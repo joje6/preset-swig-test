@@ -1,0 +1,62 @@
+type: volume
+spec:
+  name: node-volume
+  size: {{ options.size || '300M' }}
+  mode: rwx
+---
+type: service:container
+spec:
+  name: node
+  hostname: {{ name }}
+  replicas: {{ replicas || 1 }}
+  containers: 
+    - name: gitsync
+      init: true
+      image: cloudtype/gitsync:latest
+      env:
+        - name: GITSYNC_DIR
+          value: '/sync'
+        - name: GITSYNC_URL
+          value: {{ options.giturl }}
+        - name: GITSYNC_BRANCH
+          value: {{ options.gitbranch || '' }}
+        - name: GITSYNC_REVISION
+          value: {{ options.gitrevision || '' }}
+        - name: GITSYNC_PRIVATE_KEY
+          value: {{ deploykey.privatekey || '""' | raw }}
+      mounts: 
+      - volume: node-volume
+        path: /sync
+    - name: node
+      image: node:12
+      {% if options.env %}
+      env:
+        {% for env in options.env %}
+        - name: {{ env.name }}
+          value: {{ env.value }}
+        {% endfor %}
+      {% endif %}
+      {% if Array.isArray(options.port) %}
+      expose:
+      {% for port in options.port %}
+        - {{ port }}
+      {% endfor %}
+      {% elseif !Array.isArray(options.port) %}
+      expose:
+        - {{ options.port }}
+      {% endif %}
+      mounts: 
+      - volume: node-volume
+        path: /app
+      resources:
+        requests:
+          cpu: 0.25
+          memory: 64
+        limits: limits
+      command:
+        - /bin/sh
+        - -c
+      args:
+        - npm install --production
+        - npm start
+      shell: /bin/bash

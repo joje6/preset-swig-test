@@ -1,0 +1,41 @@
+name: node
+version: 12
+author: nodejs
+description: description
+license: GPLv2
+homepage: https://nodejs.org
+readme: file:README.md
+thumbnail: https://nodejs.org/static/images/logo.svg
+performance:
+  - name: node
+    maximum:
+      cpu: 8
+      memory: 2048
+    minimum:
+      cpu: 0.5
+      memory: 128
+    recommand:
+      cpu: 1
+      memory: 256
+schema:
+  $schema: http://json-schema.org/draft-07/schema#
+  $id: http://cloudtype.io/presets/node_12.schema.json
+  type: object'
+  properties:
+    hostname:
+      title: Hostname
+      type: string
+      maxLength: 255
+      attrs: 
+        placeholder: Please Enter Hostname
+    size:
+      type: string
+      title: Volume Size
+      enum: ['300M', '500M', '1G', '2G', '5G', '10G']
+      attrs:
+        placeholder: Select Volume Size
+  required: 
+    - hostname
+    - size
+files:
+  - file:spec.yaml
