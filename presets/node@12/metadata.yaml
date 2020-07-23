@@ -38,4 +38,5 @@ schema:
     - hostname
     - size
 files:
-  - file:spec.yaml
+  - README.md
+  - spec.yaml
