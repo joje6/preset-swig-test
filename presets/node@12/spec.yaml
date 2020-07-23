@@ -60,5 +60,5 @@ spec:
         - -c
       args:
         - npm install --production
-        - npm start
+        - {{ options.command || 'npm start' }}
       shell: /bin/bash
