@@ -5,7 +5,7 @@ description: description
 license: GPLv2
 homepage: https://nodejs.org
 readme: file:README.md
-thumbnail: https://nodejs.org/static/images/logo.svg
+thumbnail: file:logo.svg
 performance:
   - name: node
     maximum:
@@ -39,4 +39,5 @@ schema:
     - size
 files:
   - README.md
+  - logo.svg
   - spec.yaml
