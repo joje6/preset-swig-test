@@ -4,8 +4,8 @@ author: nodejs
 description: description
 license: GPLv2
 homepage: https://nodejs.org
-readme: README.md
-main: spec.yaml
+readme: file:README.md
+main: file:spec.yaml
 thumbnail: file:logo.svg
 performance:
   - name: node
