@@ -1,6 +1,6 @@
 $schema: http://json-schema.org/draft-07/schema#
 $id: http://cloudtype.io/presets/node_{{ version }}.schema.json
-type: object'
+type: object
 properties:
   hostname:
     title: Hostname
