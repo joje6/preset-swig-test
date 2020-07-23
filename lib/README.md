@@ -1,6 +1,6 @@
-# node@{{ version }}
+# {{name}}@{{ version }}
 
-> {{ description }}
+{{ description }}
 
-README
+
 
