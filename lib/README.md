@@ -1,4 +1,6 @@
-# node@12
+# node@{{ version }}
+
+> {{ description }}
 
 README
 
