@@ -10,6 +10,7 @@ spec:
   hostname: {{ name }}
   replicas: {{ replicas || 1 }}
   containers: 
+    {% if options.giturl %}
     - name: gitsync
       init: true
       image: cloudtype/gitsync:latest
@@ -27,6 +28,7 @@ spec:
       mounts: 
       - volume: node-volume
         path: /sync
+    {% endif %}
     - name: node
       image: node:12
       {% if options.env %}
