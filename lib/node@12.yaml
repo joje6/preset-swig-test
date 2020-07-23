@@ -1,7 +1,7 @@
 name: node
 version: 12
 author: nodejs
-description: description
+description: preset Node.js v12
 license: GPLv2
 homepage: https://nodejs.org
 readme: file:README.md

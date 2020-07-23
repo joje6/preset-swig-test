@@ -1,7 +1,7 @@
 name: node
-version: 8
+version: 14
 author: nodejs
-description: preset Node.js v8
+description: preset Node.js v14
 license: GPLv2
 homepage: https://nodejs.org
 readme: file:README.md
