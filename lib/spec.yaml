@@ -30,7 +30,7 @@ spec:
         path: /sync
     {% endif %}
     - name: node
-      image: node:12
+      image: node:{{ version || '12' }}
       {% if options.env %}
       env:
         {% for env in options.env %}

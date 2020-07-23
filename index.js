@@ -2,7 +2,7 @@ const swig = require('swig-templates');
 const yaml = require('yaml');
 
 (async () => {
-  const template = swig.compileFile(__dirname + '/presets/node@12/spec.yaml');
+  const template = swig.compileFile(__dirname + '/lib/spec.yaml');
   const result = template({
     name: 'myapp',
     options: {
