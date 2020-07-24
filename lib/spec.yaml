@@ -24,7 +24,7 @@ spec:
         - name: GITSYNC_REVISION
           value: {{ options.gitrevision || '' }}
         - name: GITSYNC_PRIVATE_KEY
-          value: {{ deploykey.privatekey || '""' | raw }}
+          value: {{ deploykey.privatekey || '' }}
       mounts: 
       - volume: node-volume
         path: /sync
