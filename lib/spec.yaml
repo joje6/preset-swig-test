@@ -43,24 +43,28 @@ spec:
       {% for port in options.port %}
         - {{ port }}
       {% endfor %}
-      {% elseif !Array.isArray(options.port) %}
+      {% elseif options.port && !Array.isArray(options.port) %}
       expose:
         - {{ options.port }}
+      {% elseif !options.port ) %}
+      expose:
+        - 9000
       {% endif %}
       mounts: 
       - volume: node-volume
         path: /app
       resources:
         requests:
-          cpu: 0.25
+          cpu: 0.0625
           memory: 64
         limits: 
-          cpu: 1
-          memory: 256
+          cpu: {{ limits.cpu || 0.125 }}
+          memory: {{ limits.memory || 256 }}
       command:
         - /bin/sh
         - -c
       args:
-        - npm install --production
-        - {{ options.command || 'npm start' }}
+        - {{ options.preinstall || 'echo $HOSTNAME' }}
+        - {{ options.install || 'npm i --production' }}
+        - {{ options.start || 'npm start' }}
       shell: /bin/bash

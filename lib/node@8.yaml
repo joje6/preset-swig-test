@@ -18,9 +18,9 @@ performance:
     recommand:
       cpu: 1
       memory: 256
-schema: file:schema.yaml
+schema: file:schema.json
 files:
   - README.md
   - logo.svg
   - spec.yaml
-  - schema.yaml
+  - schema.json
