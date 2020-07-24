@@ -30,7 +30,7 @@ spec:
         path: /sync
     {% endif %}
     - name: node
-      image: node:{{ version || 'latest' }}
+      image: node:{{ preset.version || 'latest' }}
       {% if options.env %}
       env:
         {% for env in options.env %}
@@ -45,14 +45,12 @@ spec:
       {% endfor %}
       {% elseif options.port && !Array.isArray(options.port) %}
       expose:
-        - {{ options.port }}
-      {% elseif !options.port ) %}
-      expose:
-        - 9000
+        - {{ options.port || 9000 }}
       {% endif %}
+      workdir: /home/node/app
       mounts: 
       - volume: node-volume
-        path: /app
+        path: /home/node/app
       resources:
         requests:
           cpu: 0.0625
@@ -64,7 +62,8 @@ spec:
         - /bin/sh
         - -c
       args:
-        - {{ options.preinstall || 'echo $HOSTNAME' }}
-        - {{ options.install || 'npm i --production' }}
-        - {{ options.start || 'npm start' }}
+        - >
+          {{ options.preinstall || 'echo $HOSTNAME' }}
+          && {{ options.install || 'npm i --production' }}
+          && {{ options.start || 'npm start' }}
       shell: /bin/bash

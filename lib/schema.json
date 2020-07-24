@@ -41,7 +41,7 @@
       "type": "string",
       "maxLength": 255,
       "attrs": {
-        "placeholder": "npm install --production"
+        "placeholder": "npm i -g yarn"
       }
     },
     "install": {
