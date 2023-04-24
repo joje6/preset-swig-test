@@ -18,6 +18,6 @@
   "homepage": "https://github.com/joje6/preset-swig-test#readme",
   "dependencies": {
     "swig-templates": "^2.0.3",
-    "yaml": "^1.10.0"
+    "yaml": "^2.2.2"
   }
 }
